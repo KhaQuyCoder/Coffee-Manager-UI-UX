@@ -1,0 +1,26 @@
+.main-prantPermisstion {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    line-height: 3;
+    font-family: Arial, Helvetica, sans-serif;
+    margin:20px 0 0 20px;
+}
+.title-grantPermisstion{
+    padding: 10px;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(0, 0, 0,0.3);
+}
+.main-prantPermisstion > label> span{
+    width: 350px;
+}
+.main-prantPermisstion > label{
+    display: flex;
+    gap: 20px;
+}
+.main-prantPermisstion > label > input{
+    width: 20px;
+    cursor: pointer;
+    background-color: #74A65D;
+}
+    

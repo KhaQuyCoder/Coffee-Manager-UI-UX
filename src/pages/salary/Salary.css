@@ -1,0 +1,7 @@
+.salaryHour{
+    outline: none;
+    border: 1px solid gray;
+    padding-left: 8px;
+    height: 20px;
+    width: 80%;
+}

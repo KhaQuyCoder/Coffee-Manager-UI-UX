@@ -1,0 +1,20 @@
+.textNumber-addTable{
+    height: 25px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    outline: none;
+    padding-left: 10px;
+    margin-top: 10px;
+}
+.btn-addTable{
+    height: 25px;
+    border-radius: 8px;
+    border: none;
+    padding: 0 10px;
+    margin-left: 5px;
+    cursor: pointer;
+    background-color: orange;
+}
+.btn-addTable:hover{
+    opacity: 0.8;
+}

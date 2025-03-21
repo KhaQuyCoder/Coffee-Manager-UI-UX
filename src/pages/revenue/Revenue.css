@@ -1,0 +1,44 @@
+.warrper-revenue{
+    display: flex;
+    flex-direction: column;
+}
+.choiRevenue{
+    margin: 20px 0 20px 20px;
+    font-size: 17px;
+    text-decoration: none;
+    color: black;
+    box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+    padding: 20px;
+    border-radius: 6px;
+
+}
+.choiRevenue:hover{
+    box-shadow: 0px 10px 15px rgba(0,0,0,0.2);
+}
+
+.name-revenue{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: orange;
+    margin: 5px 0;
+}
+.des-revenue{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 20px 0;
+}
+.seemore-revenue{
+    padding: 8px 8px;
+    border-radius: 5px;
+    background-color: orange;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}
+.seemore-revenue:hover{
+    background-color: rgb(237, 184, 87);
+   
+}
+.chart-revenue{
+    margin-top: 100px;
+}

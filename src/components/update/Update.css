@@ -1,0 +1,63 @@
+.form-update{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 8px;
+    padding: 20px;
+    margin-top: 30px;
+}
+.form-update-client{
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    padding: 0 20px;
+}
+
+.form-update > label >input,.div7-update,.div9-update-staff,.form-update-client > label > input{
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    outline: none;    
+    padding-left: 10px;
+}
+.form-update-client > label > input{
+   margin: 8px 0;
+}
+.form-update > label >select,.form-update-client > label > select{
+    width: 100px;
+    border-radius: 10px;
+    height: 30px;
+}
+.form-update-client > label > select{
+    margin: 5px 0;
+}
+.div3-update {
+    grid-column: span 3 / span 3;
+    grid-column-start: 1;
+    grid-row-start: 2;
+}
+
+.div4-update {
+    grid-column-start: 3;
+    grid-row-start: 1;
+}
+
+.div5-update {
+    grid-row-start: 3;
+}
+
+.div6-update {
+    grid-row-start: 3;
+    margin: 10px 0 0 20px;
+    outline: none;
+}
+
+.div7-update,.div9-update-staff {
+    grid-row-start: 3;
+    margin-top: 17px;
+    cursor: pointer;
+}
+.div7-update:hover,.div9-update-staff:hover{
+    background-color: orange;
+}

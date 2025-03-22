@@ -28,7 +28,7 @@ const AddUser = ({ setOpa, cpn_addUser, setTKUser }) => {
     }
 
     axios
-      .post("http://localhost:4000/user", {
+      .post("https://coffee-manager-api.onrender.com/user", {
         UserName: newUser.UserName,
         Password: newUser.Password,
         Role: sessionStorage.getItem("role"),

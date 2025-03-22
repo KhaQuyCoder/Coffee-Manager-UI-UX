@@ -13,7 +13,7 @@ const GrantPermisstion = ({ idUser, permisstion: initialPermisstion }) => {
     const value = e.target.value;
     try {
       await axios.post(
-        `http://localhost:4000/staff/grantPermisstion/${idUser}`,
+        `https://coffee-manager-api.onrender.com/staff/grantPermisstion/${idUser}`,
         {
           permisstion: value,
         }

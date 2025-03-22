@@ -8,7 +8,7 @@ const Table = () => {
   const cpn_addTable = useRef(null);
   useEffect(() => {
     axios
-      .get("http://localhost:4000/table")
+      .get("https://coffee-manager-api.onrender.com/table")
       .then((res) => setDataTable(res.data))
       .catch(() => "lỗi");
   }, []);

@@ -27,7 +27,10 @@ const Login = () => {
       return;
     }
     try {
-      const res = await axios.post("http://localhost:4000/user/login", user);
+      const res = await axios.post(
+        "https://coffee-manager-api.onrender.com/user/login",
+        user
+      );
 
       if (res.data.token) {
         sessionStorage.setItem("token", res.data.token);

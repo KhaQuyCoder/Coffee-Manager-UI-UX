@@ -15,7 +15,9 @@ const RevenueDay = () => {
   const year = Number(new Date().getFullYear());
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/revenue/findRevenue/${year}`)
+      .get(
+        `https://coffee-manager-api.onrender.com/revenue/findRevenue/${year}`
+      )
       .then((res) => setRevenueData(res.data.revenueDay))
       .catch(() => "Lỗi lấy data");
   }, []);

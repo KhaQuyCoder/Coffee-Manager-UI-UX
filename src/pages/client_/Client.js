@@ -31,7 +31,7 @@ const Client = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/client")
+      .get("https://coffee-manager-api.onrender.com/client")
       .then((res) => setDataClient(res.data))
       .catch(() => console.log("Lỗi tải dữ liệu"));
   }, []);
@@ -58,7 +58,7 @@ const Client = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:4000/client", newClient)
+      .post("https://coffee-manager-api.onrender.com/client", newClient)
       .then((res) => {
         setDataClient([...dataClient, res.data]);
         newClient.Name = "";
@@ -94,7 +94,7 @@ const Client = () => {
   };
   const handelDelClient = () => {
     axios
-      .delete(`http://localhost:4000/client/${idDelClient}`)
+      .delete(`https://coffee-manager-api.onrender.com/client/${idDelClient}`)
       .then((res) =>
         setDataClient((pre) =>
           pre.filter((client) => client._id !== res.data._id)

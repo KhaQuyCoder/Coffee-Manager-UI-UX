@@ -22,14 +22,14 @@ const TimeKeeping = () => {
     setDays(Array.from({ length: day }, (_, i) => i + 1));
     console.log(1);
     axios
-      .get("http://localhost:4000/all/staff")
+      .get("https://coffee-manager-api.onrender.com/all/staff")
       .then((res) => setDataStaff(res.data))
       .catch(() => console.log("Lỗi tải dữ liệu"));
   }, []);
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/workDay/timeKeeping")
+      .get("https://coffee-manager-api.onrender.com/workDay/timeKeeping")
       .then((res) => {
         setDataStaff((pre) =>
           pre.map((staff) => {
@@ -55,7 +55,7 @@ const TimeKeeping = () => {
   };
   const handelTimeKeepings = (id, d) => {
     axios
-      .post("http://localhost:4000/workDay/make", {
+      .post("https://coffee-manager-api.onrender.com/workDay/make", {
         DayWorks: {
           months: {
             [currentMonth]: {

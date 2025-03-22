@@ -23,7 +23,7 @@ const BillTable = ({ dataBill }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/table/${id}`)
+      .get(`https://coffee-manager-api.onrender.com/table/${id}`)
       .then((res) => {
         setDataProduct(res.data.CurrentOrder.items);
         setNumberTable(res.data.NumberTable);
@@ -43,7 +43,7 @@ const BillTable = ({ dataBill }) => {
       idProduct: idP,
     };
     axios
-      .put(`http://localhost:4000/table/quantity/${id}`, req)
+      .put(`https://coffee-manager-api.onrender.com/table/quantity/${id}`, req)
       .then((res) => {
         const updateQuantity = res.data.table.CurrentOrder.items;
 
@@ -60,7 +60,9 @@ const BillTable = ({ dataBill }) => {
   };
   const handleDelProduct = (idp) => {
     axios
-      .delete(`http://localhost:4000/table/${id}`, { data: { idProduct: idp } })
+      .delete(`https://coffee-manager-api.onrender.com/table/${id}`, {
+        data: { idProduct: idp },
+      })
       .then((res) => setDataProduct(res.data.CurrentOrder.items))
       .catch(() => "lỗi xóa sản phẩm");
   };
@@ -73,20 +75,25 @@ const BillTable = ({ dataBill }) => {
     if (req === "Xác nhận") {
       if (successfull.current) {
         axios
-          .delete(`http://localhost:4000/table/delteALl/${id}`)
+          .delete(
+            `https://coffee-manager-api.onrender.com/table/delteALl/${id}`
+          )
           .then((res) => setDataProduct(res.data.CurrentOrder.items));
         successfull.current.style.transform = "translateX(0)";
         removeValue.current.value = "";
-        axios.post(`http://localhost:4000/revenue/addRevenueDay/${year}`, {
-          revenueDay: {
-            day: new Date().toISOString().split("T")[0].toString(),
-            revenue: Number(totalBill() * 1000),
-          },
-          revenueMonth: {
-            month: currentMonth,
-            revenue: Number(totalBill() * 1000),
-          },
-        });
+        axios.post(
+          `https://coffee-manager-api.onrender.com/revenue/addRevenueDay/${year}`,
+          {
+            revenueDay: {
+              day: new Date().toISOString().split("T")[0].toString(),
+              revenue: Number(totalBill() * 1000),
+            },
+            revenueMonth: {
+              month: currentMonth,
+              revenue: Number(totalBill() * 1000),
+            },
+          }
+        );
         sessionStorage.removeItem(numberTable);
       }
     } else {

@@ -46,7 +46,7 @@ const UpdateStaff = ({
 
     try {
       const res = await axios.put(
-        `http://localhost:4000/staff/update/${s._id}`,
+        `https://coffee-manager-api.onrender.com/staff/update/${s._id}`,
         {
           data: dataUpdate,
         }

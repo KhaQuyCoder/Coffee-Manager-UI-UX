@@ -28,7 +28,7 @@ const Update = ({ c, formatDate, setOpa, updataClient, setDataClient }) => {
   const handelSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:4000/client/update/${c._id}`, {
+      .put(`https://coffee-manager-api.onrender.com/client/update/${c._id}`, {
         data: dataUpdate,
       })
       .then((res) => {

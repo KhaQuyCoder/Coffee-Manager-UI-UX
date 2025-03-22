@@ -12,7 +12,7 @@ const ChoiProduct = () => {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/table/${id}`)
+      .get(`https://coffee-manager-api.onrender.com/table/${id}`)
       .then((res) => {
         setNumberTable(res.data.NumberTable);
       })
@@ -20,7 +20,7 @@ const ChoiProduct = () => {
   }, []);
   useEffect(() => {
     axios
-      .get("http://localhost:4000/product")
+      .get("https://coffee-manager-api.onrender.com/product")
       .then((res) => setDataProduct(res.data))
       .catch(() => "Lỗi lấy dữ liệu");
   }, []);
@@ -30,7 +30,7 @@ const ChoiProduct = () => {
       item = "";
     }
     axios
-      .get(`http://localhost:4000/product/${item}`)
+      .get(`https://coffee-manager-api.onrender.com/product/${item}`)
       .then((res) => setDataProduct(res.data))
       .catch(() => "Lỗi lấy dữ liệu");
   };
@@ -50,7 +50,7 @@ const ChoiProduct = () => {
       price: p.Price,
     };
     axios
-      .put(`http://localhost:4000/table/${id}`, {
+      .put(`https://coffee-manager-api.onrender.com/table/${id}`, {
         product,
       })
       .then((res) => setDataBill(res.data.table.CurrentOrder.items))

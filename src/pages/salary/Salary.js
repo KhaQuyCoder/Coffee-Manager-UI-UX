@@ -14,14 +14,14 @@ const Salary = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/all/staff")
+      .get("https://coffee-manager-api.onrender.com/all/staff")
       .then((res) => setDataStaff(res.data))
       .catch(() => console.log("Lỗi tải dữ liệu"));
   }, []);
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/workDay/timeKeeping")
+      .get("https://coffee-manager-api.onrender.com/workDay/timeKeeping")
       .then((res) => {
         setDataStaff((prev) =>
           prev.map((staff) => {

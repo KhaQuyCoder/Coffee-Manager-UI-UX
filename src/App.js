@@ -28,10 +28,12 @@ function App() {
   const role = sessionStorage.getItem("Permissions");
   useEffect(() => {
     if (id) {
-      axios.get(`http://localhost:4000/new/staff/${id}`).then((res) => {
-        setDataStaff(res.data);
-        sessionStorage.setItem("nameStaff", res.data.Name);
-      });
+      axios
+        .get(`https://coffee-manager-api.onrender.com/new/staff/${id}`)
+        .then((res) => {
+          setDataStaff(res.data);
+          sessionStorage.setItem("nameStaff", res.data.Name);
+        });
     }
   }, [id]);
 

@@ -9,7 +9,7 @@ const Header = () => {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/new/staff/${id}`)
+      .get(`https://coffee-manager-api.onrender.com/new/staff/${id}`)
       .then((res) => setDataStaff(res.data))
       .catch(() => "loi get du lieu");
   }, [id]);

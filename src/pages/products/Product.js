@@ -16,7 +16,7 @@ const Product = () => {
   });
   useEffect(() => {
     axios
-      .get("http://localhost:4000/product")
+      .get("https://coffee-manager-api.onrender.com/product")
       .then((res) => setDataProduct(res.data))
       .catch(() => "Lỗi lấy data");
   }, []);
@@ -36,7 +36,7 @@ const Product = () => {
     console.log(dataPost);
 
     axios
-      .post("http://localhost:4000/add/product", dataPost)
+      .post("https://coffee-manager-api.onrender.com/add/product", dataPost)
       .then((res) => {
         setDataProduct((pre) => [...pre, res.data]);
         dataMaterialRef.current.style.transform = "translateX(110%)";
@@ -45,18 +45,22 @@ const Product = () => {
       .catch(() => "Lỗi post data");
   };
   const handelOff = (p) => {
-    axios.put(`http://localhost:4000/add/product/off/${p._id}`).then((res) => {
-      setDataProduct((pre) =>
-        pre.map((item) =>
-          item._id === res.data._id ? { ...item, State: !item.State } : item
-        )
-      );
-    });
+    axios
+      .put(`https://coffee-manager-api.onrender.com/add/product/off/${p._id}`)
+      .then((res) => {
+        setDataProduct((pre) =>
+          pre.map((item) =>
+            item._id === res.data._id ? { ...item, State: !item.State } : item
+          )
+        );
+      });
   };
 
   const handelDel = (p) => {
     axios
-      .delete(`http://localhost:4000/add/product/delete/${p._id}`)
+      .delete(
+        `https://coffee-manager-api.onrender.com/add/product/delete/${p._id}`
+      )
       .then((res) =>
         setDataProduct((pre) => pre.filter((item) => item._id !== res.data._id))
       );

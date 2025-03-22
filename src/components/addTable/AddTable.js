@@ -15,7 +15,7 @@ const AddTable = ({ setDataTable }) => {
     };
 
     axios
-      .post("http://localhost:4000/table", table)
+      .post("https://coffee-manager-api.onrender.com/table", table)
       .then((res) => setDataTable((pre) => [...pre, res.data]))
       .catch(() => "Lỗi lấy dữ liệu");
   };

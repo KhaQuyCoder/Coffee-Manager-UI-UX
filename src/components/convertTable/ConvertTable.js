@@ -7,7 +7,7 @@ const ConvertTable = ({ convert, id, dataProduct, setOpa }) => {
   const navigate = useNavigate();
   useEffect(() => {
     axios
-      .get("http://localhost:4000/table")
+      .get("https://coffee-manager-api.onrender.com/table")
       .then((res) => setDataTableNoAc(res.data))
       .catch(() => "Lỗi lấy bàn");
   }, []);
@@ -18,7 +18,10 @@ const ConvertTable = ({ convert, id, dataProduct, setOpa }) => {
     };
 
     axios
-      .put(`http://localhost:4000/table/convert/${tb._id}`, infor)
+      .put(
+        `https://coffee-manager-api.onrender.com/table/convert/${tb._id}`,
+        infor
+      )
       .then(() => {
         convert.current.style.transform = "translateX(100%)";
         navigate(`/mannagerTable/${tb._id}`);

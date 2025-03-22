@@ -40,11 +40,11 @@ const Staff = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/all/staff")
+      .get("https://coffee-manager-api.onrender.com/all/staff")
       .then((res) => setDataStaff(res.data))
       .catch(() => console.log("Lỗi tải dữ liệu"));
     axios
-      .get("http://localhost:4000/user")
+      .get("https://coffee-manager-api.onrender.com/user")
       .then((res) => {
         setDataStaff((prev) =>
           prev.map((staff) => {
@@ -96,7 +96,7 @@ const Staff = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:4000/new/staff", newStaff)
+      .post("https://coffee-manager-api.onrender.com/new/staff", newStaff)
       .then((res) => {
         setDataStaff([...dataStaff, res.data]);
         handleCloseForm();
@@ -123,13 +123,13 @@ const Staff = () => {
   };
   const handelDelClient = () => {
     axios
-      .delete(`http://localhost:4000/new/staff/${idDelStaff}`)
+      .delete(`https://coffee-manager-api.onrender.com/new/staff/${idDelStaff}`)
       .then((res) =>
         setDataStaff((pre) => pre.filter((staff) => staff._id !== res.data._id))
       )
       .catch(() => "lỗi xóa");
     axios
-      .delete(`http://localhost:4000/user/${idDelStaff}`)
+      .delete(`https://coffee-manager-api.onrender.com/user/${idDelStaff}`)
       .then(() => 0)
       .catch(() => "lỗi xóa");
     notifiDel.current.style.transform = "translateY(-300%)";

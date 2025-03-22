@@ -22,7 +22,7 @@ const Material = () => {
   });
   useEffect(() => {
     axios
-      .get("http://localhost:4000/material/get")
+      .get("https://coffee-manager-api.onrender.com/material/get")
       .then((res) => setDataMaterial(res.data))
       .catch(() => "Lỗi get data");
   }, []);
@@ -44,7 +44,7 @@ const Material = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:4000/material/make", dataPost)
+      .post("https://coffee-manager-api.onrender.com/material/make", dataPost)
       .then((res) => {
         setDataMaterial((pre) => [...pre, res.data]);
         dataMaterialRef.current.style.transform = "translateX(110%)";
@@ -54,9 +54,12 @@ const Material = () => {
   };
   const handelChangeSLTK = (e, m) => {
     setSLTK((pre) => ({ ...pre, [m._id]: e.target.value }));
-    axios.put(`http://localhost:4000/material/update/${m._id}`, {
-      newSLTK: e.target.value,
-    });
+    axios.put(
+      `https://coffee-manager-api.onrender.com/material/update/${m._id}`,
+      {
+        newSLTK: e.target.value,
+      }
+    );
   };
   const checkDateHSD = (d1, hsd) => {
     const m = Number(hsd.split(" ")[0]);
@@ -67,7 +70,9 @@ const Material = () => {
   };
   const handelDeleteMaterial = (m) => {
     axios
-      .delete(`http://localhost:4000/material/delete/${m._id}`)
+      .delete(
+        `https://coffee-manager-api.onrender.com/material/delete/${m._id}`
+      )
       .then((res) =>
         setDataMaterial((pre) =>
           pre.filter((item) => item._id !== res.data._id)

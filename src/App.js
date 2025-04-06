@@ -19,7 +19,9 @@ import Product from "./pages/products/Product";
 import Material from "./pages/material/Material";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Close from "./components/closeWarning/Close";
+import ChangerPass from "./pages/changerPass/ChangerPass";
+import Home from "./pages/home/Home";
+import HistoryBill from "./pages/history/HistoryBill";
 function App() {
   const location = useLocation();
   const token = sessionStorage.getItem("token");
@@ -54,6 +56,8 @@ function App() {
                       <Route path="/mannagerSalary" element={<Salary />} />
                       <Route path="/mannagerRevenue" element={<Revenue />} />
                       <Route path="/mannagerProduct" element={<Product />} />
+                      <Route path="/changerPass" element={<ChangerPass />} />
+
                       <Route
                         path="/mannagerTimekeeping"
                         element={<TimeKeeping />}
@@ -70,8 +74,12 @@ function App() {
                       )}
                     </>
                   )}
-                  <Route path="/" element={<Table />} />
+                  <Route path="/" element={<Home />} />
+                  <Route path="/table" element={<Table />} />
                   <Route path="/mannagerTable/:id" element={<ChoiProduct />} />
+                  <Route path="/changerPass" element={<ChangerPass />} />
+                  <Route path="/historyBill" element={<HistoryBill />} />
+
                   <Route path="/*" element={<NotFound />} />
                   {dataStaff?.grantPermisstion?.includes("KH") && (
                     <Route path="/mannagerClient" element={<Client />} />
@@ -85,10 +93,10 @@ function App() {
                   {dataStaff?.grantPermisstion?.includes("DT") && (
                     <Route path="/mannagerRevenue" element={<Revenue />} />
                   )}
-                  {dataStaff?.grantPermisstion?.includes("NL&SP") && (
+                  {dataStaff?.grantPermisstion?.includes("VL&SP") && (
                     <Route path="/mannagerProduct" element={<Product />} />
                   )}
-                  {dataStaff?.grantPermisstion?.includes("NL&SP") && (
+                  {dataStaff?.grantPermisstion?.includes("VL&SP") && (
                     <Route path="/mannagerMaterial" element={<Material />} />
                   )}
                   {dataStaff?.grantPermisstion?.includes("CC") && (

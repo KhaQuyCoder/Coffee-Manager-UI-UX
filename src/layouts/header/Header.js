@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/loggo.jpg";
+import logo from "../../assets/logoStore.png";
 import axios from "axios";
 const Header = () => {
   const id = sessionStorage.getItem("_id");

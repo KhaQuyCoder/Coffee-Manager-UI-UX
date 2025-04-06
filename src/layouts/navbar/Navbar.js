@@ -2,10 +2,14 @@ import React, { useRef } from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./Navbar.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const id = sessionStorage.getItem("_id");
   const navbar = useRef(null);
+  const childMenu = useRef(null);
+  const RefL = useRef(null);
+  const refNS = useRef(null);
+  const refTK = useRef(null);
   const navigate = useNavigate();
   const [showExits, setShowExits] = useState(false);
   const [dataStaff, setDataStaff] = useState();
@@ -17,52 +21,114 @@ const Navbar = () => {
   }, [id]);
   const listNavbar = [
     {
-      name: "Quản lý bàn",
+      name: "Trang chủ",
       ref: "/",
-      isAdmin: false,
-      grantPermisstion: true,
+      isAdmin: true,
+      icon: <i class="fa-solid fa-house-user"></i>,
     },
     {
-      name: "Quản lý khách hàng",
+      name: "Bàn",
+      ref: "/table",
+      isAdmin: true,
+      icon: <i class="fa-solid fa-table"></i>,
+    },
+    {
+      name: "Lương",
       ref: "/mannagerClient",
       isAdmin: true,
-      grantPermisstion: !!dataStaff?.grantPermisstion?.includes("KH"),
+      icon: <i class="fa-solid fa-sack-dollar"></i>,
+      refHu: RefL,
+      childMenu: [
+        {
+          nameChild: "Chấm công",
+          ref: "mannagerTimekeeping",
+          quyen: !!dataStaff?.grantPermisstion?.includes("CC"),
+        },
+        {
+          nameChild: "Bảng lương",
+          ref: "mannagerSalary",
+          quyen: !!dataStaff?.grantPermisstion?.includes("L"),
+        },
+      ],
     },
     {
-      name: "Quản lý nhân viên",
+      name: "Thống kê",
       ref: "/mannagerStaff",
       isAdmin: true,
-      grantPermisstion: !!dataStaff?.grantPermisstion?.includes("NV"),
+      icon: <i class="fa-solid fa-chart-simple"></i>,
+      refHu: refTK,
+      childMenu: [
+        {
+          nameChild: "Doanh thu",
+          ref: "/mannagerRevenue",
+          quyen: !!dataStaff?.grantPermisstion?.includes("DT"),
+        },
+        {
+          nameChild: "Doanh thu ngày",
+          ref: "/revenue/doanh-thu-ngay",
+          quyen: !!dataStaff?.grantPermisstion?.includes("DT"),
+        },
+        {
+          nameChild: "Doanh thu tháng",
+          ref: "/revenue/doanh-thu-thang",
+          quyen: !!dataStaff?.grantPermisstion?.includes("DT"),
+        },
+        {
+          nameChild: "Doanh thu năm",
+          ref: "/revenue/doanh-thu-nam",
+          quyen: !!dataStaff?.grantPermisstion?.includes("DT"),
+        },
+      ],
     },
     {
-      name: "Quản lý chấm công",
+      name: "Tài khoản",
       ref: "/mannagerTimekeeping",
       isAdmin: true,
       grantPermisstion: !!dataStaff?.grantPermisstion?.includes("CC"),
+      icon: <i class="fa-solid fa-gear"></i>,
     },
     {
-      name: "Quản lý lương nhân viên",
+      name: "Bán hàng",
       ref: "/mannagerSalary",
       isAdmin: true,
-      grantPermisstion: !!dataStaff?.grantPermisstion?.includes("L"),
+      icon: <i class="fa-solid fa-dumpster-fire"></i>,
+      refHu: childMenu,
+      childMenu: [
+        {
+          nameChild: "Sản phẩm",
+          ref: "mannagerProduct",
+          quyen: !!dataStaff?.grantPermisstion?.includes("VL&SP"),
+        },
+        {
+          nameChild: "Nguyên vật liệu",
+          ref: "mannagerMaterial",
+          quyen: !!dataStaff?.grantPermisstion?.includes("VL&SP"),
+        },
+      ],
     },
     {
-      name: "Thống kê doanh thu",
-      ref: "/mannagerRevenue",
+      name: "Danh mục",
       isAdmin: true,
-      grantPermisstion: !!dataStaff?.grantPermisstion?.includes("DT"),
+      icon: <i class="fa-solid fa-gear"></i>,
+      refHu: refNS,
+      childMenu: [
+        {
+          nameChild: "Khách hàng",
+          ref: "mannagerClient",
+          quyen: !!dataStaff?.grantPermisstion?.includes("KH"),
+        },
+        {
+          nameChild: "Nhân viên",
+          ref: "mannagerStaff",
+          quyen: !!dataStaff?.grantPermisstion?.includes("NV"),
+        },
+      ],
     },
     {
-      name: "Quản lý sản phẩm",
-      ref: "/mannagerProduct",
+      name: "Lịch sử thanh toán",
+      ref: "/historyBill",
       isAdmin: true,
-      grantPermisstion: !!dataStaff?.grantPermisstion?.includes("VL&SP"),
-    },
-    {
-      name: "Quản lý nguyên vật liệu",
-      ref: "/mannagerMaterial",
-      isAdmin: true,
-      grantPermisstion: !!dataStaff?.grantPermisstion?.includes("VL&SP"),
+      icon: <i class="fa-solid fa-clock-rotate-left"></i>,
     },
   ];
 
@@ -74,12 +140,54 @@ const Navbar = () => {
     setShowExits(false);
     navbar.current.style.transform = "translateX(-100%)";
   };
-  const handelChoi = (r) => {
+  const handelChoi = (r, name, ref) => {
+    if (name === "Bàn") {
+      navbar.current.style.transform = "translateX(-100%)";
+      setShowExits(false);
+      navigate(ref);
+    }
+    if (name === "Trang chủ") {
+      navbar.current.style.transform = "translateX(-100%)";
+      setShowExits(false);
+      navigate(ref);
+    }
+    if (name === "Lịch sử thanh toán") {
+      navbar.current.style.transform = "translateX(-100%)";
+      setShowExits(false);
+      navigate(ref);
+    }
+    if (r === refNS) {
+      r.current.style.display = "block";
+      refTK.current.style.display = "none";
+      RefL.current.style.display = "none";
+      childMenu.current.style.display = "none";
+    } else if (r === refTK) {
+      r.current.style.display = "block";
+      refNS.current.style.display = "none";
+      RefL.current.style.display = "none";
+      childMenu.current.style.display = "none";
+    } else if (r === RefL) {
+      r.current.style.display = "block";
+      refNS.current.style.display = "none";
+      refTK.current.style.display = "none";
+      childMenu.current.display = "none";
+    } else if (r === childMenu) {
+      r.current.style.display = "block";
+      refNS.current.style.display = "none";
+      refTK.current.style.display = "none";
+      RefL.current.style.display = "none";
+    }
+  };
+  const handelChildMenu = (router) => {
     navbar.current.style.transform = "translateX(-100%)";
     setShowExits(false);
-    navigate(r);
+    navigate(router);
   };
-
+  const handelChangerPass = () => {
+    navbar.current.style.transform = "translateX(-100%)";
+    setShowExits(false);
+    navigate("/changerPass");
+  };
   return (
     <div className="container-navbar" ref={navbar}>
       {!showExits && (
@@ -92,16 +200,52 @@ const Navbar = () => {
       </div>
       <div>
         {listNavbar.map((item, index) =>
-          dataStaff?.Permissions === "Quản lý" || item.grantPermisstion ? (
+          dataStaff?.Permissions === "Quản lý" || item.isAdmin ? (
             <p
-              onClick={() => handelChoi(item.ref)}
+              onClick={() => handelChoi(item.refHu, item.name, item.ref)}
               key={index}
               className="item-navbar"
             >
-              {item.name}
+              <span>{item.icon}</span>
+              <span style={{ marginLeft: "20px" }}>{item.name}</span>
+              <div
+                className="childMenu"
+                style={{ marginLeft: "40px" }}
+                ref={item.refHu}
+              >
+                {item.childMenu?.map((child) => (
+                  <>
+                    {child.quyen || dataStaff?.Permissions === "Quản lý" ? (
+                      <div
+                        to={child.ref}
+                        onClick={() => handelChildMenu(child.ref)}
+                        className="childItem"
+                      >
+                        {child.nameChild}
+                      </div>
+                    ) : null}
+                  </>
+                ))}
+              </div>
             </p>
           ) : null
         )}
+        <div
+          style={{
+            position: "absolute",
+            bottom: "20%",
+            borderTop: "1px solid black",
+            width: "100%",
+            paddingTop: "20px",
+          }}
+        >
+          <span className="changeIcon">
+            <i class="fa-solid fa-wrench"></i>
+          </span>
+          <span className="changePass" onClick={handelChangerPass}>
+            Đổi mật khẩu
+          </span>
+        </div>
       </div>
     </div>
   );

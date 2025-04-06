@@ -1,4 +1,6 @@
-
+.container-table{
+    z-index: 99999999;
+}
 .wrapper-table{
     display: flex;
     flex-wrap: wrap;
@@ -46,4 +48,13 @@
 .off-table{
     color: #fff;
     background-color: #333;
+}
+.bcg_coffee{
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+}
+.img-coffee{
+    width: 100%;
 }

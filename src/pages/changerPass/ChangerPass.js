@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import bcrypt from "bcryptjs";
 import axios from "axios";
 import bgr from "../../assets/bgr_login.png";
-import { useNavigate } from "react-router-dom";
 import logo from "../../assets/loggo.jpg";
 import "./ChangerPass.css";
 
@@ -34,8 +32,6 @@ const ChangerPass = () => {
       return;
     }
     try {
-      console.log(id, dataChangerPass.passOld, dataChangerPass.passNew);
-
       const res = await axios.post(
         `https://coffee-manager-api.onrender.com/user/changerPass`,
         dataChangerPass

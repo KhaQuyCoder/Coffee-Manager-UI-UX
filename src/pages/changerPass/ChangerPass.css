@@ -2,7 +2,7 @@
 
 .form-changerPass{
     border-radius: 10px;
-    background-color: #fff;
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 70px;
     display: flex;
     flex-direction: column;

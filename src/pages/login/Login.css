@@ -77,3 +77,12 @@
     transition: 0.3s linear;
     font-family: Arial;
 }
+.quen-pass{
+    color: #fff;
+    margin: -10px 0 0 5px;
+    cursor: pointer;
+    width: max-content;
+}
+.quen-pass:hover{
+    color: #74A65D;
+}

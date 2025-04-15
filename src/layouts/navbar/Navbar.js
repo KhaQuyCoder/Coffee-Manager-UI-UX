@@ -59,22 +59,22 @@ const Navbar = () => {
       refHu: refTK,
       childMenu: [
         {
-          nameChild: "Doanh thu",
+          nameChild: "Bán hàng",
           ref: "/mannagerRevenue",
           quyen: !!dataStaff?.grantPermisstion?.includes("DT"),
         },
         {
-          nameChild: "Doanh thu ngày",
+          nameChild: "Hàng hóa",
           ref: "/revenue/doanh-thu-ngay",
           quyen: !!dataStaff?.grantPermisstion?.includes("DT"),
         },
         {
-          nameChild: "Doanh thu tháng",
+          nameChild: "Thu chi",
           ref: "/revenue/doanh-thu-thang",
           quyen: !!dataStaff?.grantPermisstion?.includes("DT"),
         },
         {
-          nameChild: "Doanh thu năm",
+          nameChild: "Khách hàng",
           ref: "/revenue/doanh-thu-nam",
           quyen: !!dataStaff?.grantPermisstion?.includes("DT"),
         },
@@ -125,6 +125,12 @@ const Navbar = () => {
       ],
     },
     {
+      name: "Khuyến mãi",
+      ref: "/promotion",
+      isAdmin: true,
+      icon: <i class="fa-solid fa-percent"></i>,
+    },
+    {
       name: "Lịch sử thanh toán",
       ref: "/historyBill",
       isAdmin: true,
@@ -152,6 +158,11 @@ const Navbar = () => {
       navigate(ref);
     }
     if (name === "Lịch sử thanh toán") {
+      navbar.current.style.transform = "translateX(-100%)";
+      setShowExits(false);
+      navigate(ref);
+    }
+    if (name === "Khuyến mãi") {
       navbar.current.style.transform = "translateX(-100%)";
       setShowExits(false);
       navigate(ref);

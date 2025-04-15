@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import bgr from "../../assets/bgr_login.png";
-import logo from "../../assets/loggo.jpg";
+import logo from "../../assets/logoStore.png";
 import "./ChangerPass.css";
 
 const ChangerPass = () => {

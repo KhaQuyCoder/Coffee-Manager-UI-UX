@@ -85,10 +85,12 @@ const Client = () => {
   };
   const handelExits = () => {
     setOpa(false);
+    notifiDel.current.style.transform = "translateY(-300%)";
+    notifiDel.current.style.opacity = "0";
   };
   const handelUpdate = (cl) => {
     setClient(cl);
-    updataClient.current.style.transform = "translateY(0%)";
+    updataClient.current.style.transform = "translateY(-80%)";
     updataClient.current.style.opacity = "1";
     setOpa(true);
   };

@@ -12,10 +12,17 @@ const BillTable = ({ dataBill }) => {
   const [money, setMoney] = useState();
   const [pay, setPay] = useState(false);
   const successfull = useRef(null);
+  const refKM = useRef(null);
+  const refVAT = useRef(null);
+  const phiDV = useRef(null);
+  const [resBill, setResBill] = useState(true);
   const removeValue = useRef(null);
   const convert = useRef(null);
   const tableBill = useRef(null);
   const s = useRef(null);
+  const [dv, setDV] = useState(0);
+  const [vat, setVat] = useState(0);
+  const [km, setKM] = useState(0);
 
   const year = Number(new Date().getFullYear());
   const yearCurrent = Number(new Date().getFullYear());
@@ -83,6 +90,13 @@ const BillTable = ({ dataBill }) => {
           .then((res) => setDataProduct(res.data.CurrentOrder.items));
         successfull.current.style.transform = "translateX(0)";
         removeValue.current.value = "";
+        phiDV.current.value = "";
+        refKM.current.value = "";
+        refVAT.current.value = "";
+        setTimeout(() => {
+          setResBill(false);
+        }, 2000);
+        setResBill(false);
         axios.post(
           `https://coffee-manager-api.onrender.com/revenue/addRevenueDay/${year}`,
           {
@@ -145,6 +159,14 @@ const BillTable = ({ dataBill }) => {
     convert.current.style.transform = "translateX(100%)";
     tableBill.current.style.display = "block";
   };
+  const allBill = () => {
+    return (
+      Number(totalBill()) +
+      totalBill() * (Number(vat) / 100) +
+      totalBill() * (Number(dv) / 100) -
+      totalBill() * (Number(km) / 100)
+    );
+  };
   return (
     <>
       {opa && <div className="opa-convert" onClick={handelClose}></div>}
@@ -201,22 +223,63 @@ const BillTable = ({ dataBill }) => {
           {pay && (
             <div className="all-bill">
               <p>
-                Tổng hóa đơn:{" "}
-                <span style={{ color: "#74A65D" }}>{totalBill()}</span>
-                <br></br>
-                Số tiền của khách
-                <input
-                  className="inputmonney-bill"
-                  ref={removeValue}
-                  onChange={(e) =>
-                    setMoney(e.target.value.toLocaleString("vi-VN"))
-                  }
-                />
-                <br></br>
-                <span>
-                  Số tiền trả lại:{" "}
-                  {handelMoney() > 0 ? handelMoney() + ".000" : 0}
-                </span>
+                <div className="left-infor-bill">
+                  <span className="dd">Phí dịch vụ</span>
+                  <input
+                    className="inputmonney-bill"
+                    placeholder="0"
+                    ref={phiDV}
+                    type="number"
+                    onChange={(e) => setDV(e.target.value)}
+                  />
+                </div>
+
+                <div className="left-infor-bill">
+                  <span className="dd">VAT(%)</span>
+                  <input
+                    className="inputmonney-bill"
+                    placeholder="0"
+                    ref={refVAT}
+                    type="number"
+                    onChange={(e) => setVat(e.target.value)}
+                  />
+                </div>
+                <div className="left-infor-bill">
+                  <span className="dd">Khuyến mãi</span>
+                  <input
+                    className="inputmonney-bill"
+                    placeholder="0"
+                    ref={refKM}
+                    type="number"
+                    onChange={(e) => setKM(e.target.value)}
+                  />
+                </div>
+                <div className="left-infor-bill">
+                  <span className="dd">Số tiền của khách</span>
+                  <input
+                    className="inputmonney-bill"
+                    ref={removeValue}
+                    onChange={(e) =>
+                      setMoney(e.target.value.toLocaleString("vi-VN"))
+                    }
+                  />
+                </div>
+                <div className="left-infor-bill">
+                  <span className="dd">Số tiền trả lại: </span>
+                  <span>
+                    {resBill
+                      ? handelMoney() > 0
+                        ? handelMoney() + ".000"
+                        : 0
+                      : ""}
+                  </span>
+                </div>
+                <div className="left-infor-bill">
+                  <span className="dd">Tổng hóa đơn: </span>
+                  <span style={{ color: "#74A65D" }}>
+                    {(allBill() * 1000).toLocaleString("vi-VN")}
+                  </span>
+                </div>
               </p>
               <div className="icon-pay-bill" ref={successfull}>
                 <i class="fa-solid fa-check"></i>
@@ -253,6 +316,10 @@ const BillTable = ({ dataBill }) => {
             dataProduct={dataProduct}
             numberTable={numberTable}
             money={money}
+            bill={allBill()}
+            dv={dv}
+            vat={vat}
+            km={km}
           />
         </div>
       )}

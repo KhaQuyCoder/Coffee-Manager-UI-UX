@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import "./Print.css";
-const Invoice = ({ dataProduct, numberTable, money }) => {
+const Invoice = ({ dataProduct, numberTable, money, bill, dv, vat, km }) => {
   const invoiceRef = useRef();
   const now = new Date();
   const hours = now.getHours().toString().padStart(2, "0");
@@ -77,11 +77,27 @@ const Invoice = ({ dataProduct, numberTable, money }) => {
                 </td>
               </tr>
               <tr className="f">
-                <td>VAT(0%)</td>
+                <td>VAT(%)</td>
                 <td></td>
                 <td></td>
                 <td>
-                  <strong>{0}</strong>
+                  <strong>{vat || 0}%</strong>
+                </td>
+              </tr>
+              <tr className="f">
+                <td>Phí dịch vụ</td>
+                <td></td>
+                <td></td>
+                <td>
+                  <strong>{dv || 0}%</strong>
+                </td>
+              </tr>
+              <tr className="f">
+                <td>Khuyến mãi</td>
+                <td></td>
+                <td></td>
+                <td>
+                  <strong>{km || 0}%</strong>
                 </td>
               </tr>
               <tr className="f">
@@ -89,7 +105,7 @@ const Invoice = ({ dataProduct, numberTable, money }) => {
                 <td></td>
                 <td></td>
                 <td>
-                  <strong>{totalBill().toLocaleString("vi-Vn")}</strong>
+                  <strong>{(bill * 1000).toLocaleString("vi-VN")}</strong>
                 </td>
               </tr>
               <tr className="f">
@@ -110,8 +126,10 @@ const Invoice = ({ dataProduct, numberTable, money }) => {
                 <td></td>
                 <td>
                   <strong>
-                    {money * 1000 - totalBill() >= 0
-                      ? (money * 1000 - totalBill()).toLocaleString("vi-Vn")
+                    {money * 1000 - Number(bill * 1000) >= 0
+                      ? (money * 1000 - Number(bill * 1000)).toLocaleString(
+                          "vi-Vn"
+                        )
                       : ""}
                   </strong>
                 </td>

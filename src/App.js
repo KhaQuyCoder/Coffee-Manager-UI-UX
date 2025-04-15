@@ -22,6 +22,7 @@ import axios from "axios";
 import ChangerPass from "./pages/changerPass/ChangerPass";
 import Home from "./pages/home/Home";
 import HistoryBill from "./pages/history/HistoryBill";
+import Promotion from "./components/promotion/Promotion";
 function App() {
   const location = useLocation();
   const token = sessionStorage.getItem("token");
@@ -79,6 +80,7 @@ function App() {
                   <Route path="/mannagerTable/:id" element={<ChoiProduct />} />
                   <Route path="/changerPass" element={<ChangerPass />} />
                   <Route path="/historyBill" element={<HistoryBill />} />
+                  <Route path="/promotion" element={<Promotion />} />
 
                   <Route path="/*" element={<NotFound />} />
                   {dataStaff?.grantPermisstion?.includes("KH") && (

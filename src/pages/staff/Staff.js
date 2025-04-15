@@ -120,6 +120,7 @@ const Staff = () => {
   const handelExits = () => {
     setOpa(false);
     notifiDel.current.style.transform = "translateY(-300%)";
+    notifiDel.current.style.opacity = "0";
   };
   const handelDelClient = () => {
     axios

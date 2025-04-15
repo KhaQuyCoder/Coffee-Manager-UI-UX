@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import "./Login.css";
 import axios from "axios";
 import bgr from "../../assets/bgr_login.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logoStore.png";
 
 const Login = () => {
@@ -79,8 +79,12 @@ const Login = () => {
           <button className="btn-login" type="submit">
             Đăng nhập
           </button>
+          <Link to="/UpdatePass" className="quen-pass">
+            Quên mật khẩu?
+          </Link>
         </form>
       </div>
+
       <span className="message-login" ref={notifyMessage}>
         <i class="fa-solid fa-triangle-exclamation"></i> {message}
       </span>

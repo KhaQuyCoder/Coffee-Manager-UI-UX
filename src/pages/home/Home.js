@@ -18,7 +18,7 @@ const Home = () => {
         <img src={bcg} alt="bcg" className="img-home" />
         <div className="wrapper-home">
           <h1 className="title-home">
-            Wellcom to coffee shope management software
+            Welcome to coffee shope management software
           </h1>
           <h2 className="hi-home">Hi, Ngọc coffee</h2>
 
